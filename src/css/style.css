@@ -6,17 +6,10 @@
   font-size: 16px;
   display: none;
 }
-.error{
-     display: none;
+.error {
+  display: none;
 }
 
-.cat-info{
-     
-     display: flex;
-}
-.cat-img {
-  width: 500px;
-}
 
 .loader {
   width: 48px;

@@ -19,12 +19,15 @@ function createOptions(arr) {
 }
 
 fetchBreeds()
-  .then(resp => {
-    elements.select.innerHTML = createOptions(resp);
+  .then(data => {
     elements.loader.style.display = 'none';
     elements.select.style.display = 'block';
+    console.log(data);
+    elements.select.innerHTML = createOptions(data);
   })
   .catch(err => {
+    elements.loader.style.display = 'none';
+    elements.select.style.display = 'block';
     return Report.failure('Oops!', `Something went wrong!`, 'Try again');
   });
 
@@ -35,12 +38,16 @@ function handlerSelect(evt) {
   elements.catInfo.style.display = 'none';
 
   fetchCatByBreed(evt.currentTarget.value)
-    .then(resp => {
+    .then(data => {
       elements.loader.style.display = 'none';
       elements.catInfo.style.display = 'block';
-      createMarkup(resp);
+      if (data.length === 0) {
+        throw new Error('Error');
+      }
+
+      createMarkup(data);
     })
-    .catch(err => {
+    .catch(error => {
       elements.catInfo.innerHTML = '';
       return Report.failure(
         'Oops!',
@@ -53,7 +60,7 @@ function handlerSelect(evt) {
 function createMarkup(catImg) {
   return catImg.map(cat => {
     const { temperament, description, name } = cat.breeds[0];
-    elements.catInfo.innerHTML = `<img class="cat-img" src="${cat.url}" alt="">
+    elements.catInfo.innerHTML = `<img width="400px"; src="${cat.url}" alt="">
    <h2>${name}</h2>
    <p>${description}</p>
   <p>Temperament:${temperament}</p>`;
