@@ -18,6 +18,7 @@ function createOptions(arr) {
     .map(({ id, name }) => `<option value="${id}">${name}</option>`)
     .join('');
 }
+
 fetchBreeds()
   .then(resp => {
     elements.select.innerHTML = createOptions(resp);
@@ -57,7 +58,6 @@ function createMarkup(catImg) {
    <p>${description}</p>
   <p>Temperament:${temperament}</p>`;
   });
-
   // fetchBreeds().then(resp => {
   //   for (let i = 0; i < resp.length; i++) {
   //     if (evt.target.value === resp[i].id) {
