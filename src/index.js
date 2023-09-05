@@ -41,9 +41,10 @@ function handlerSelect(evt) {
       createMarkup(resp);
     })
     .catch(err => {
+      elements.catInfo.innerHTML = '';
       return Report.failure(
         'Oops!',
-        `Something went wrong! Try reloading the page!`,
+        `Try a different breed of cat!`,
         'Try again'
       );
     });

@@ -8,12 +8,15 @@ export function fetchBreeds() {
   return axios
     .get('https://api.thecatapi.com/v1/breeds')
     .then(resp => {
+      if (resp.status !== 200) {
+        throw new Error('Error')
+      }
       console.log(resp);
       return resp.data;
     })
     .catch(err => {
       elements.loader.display = 'none';
-      return Report.failure('Oops!', `Something went wrong!`, 'Try again');
+      return err;
     });
 }
 
@@ -21,10 +24,12 @@ export function fetchCatByBreed(breedId) {
   return axios
     .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
     .then(resp => {
-      console.log(resp.data);
+      if (resp.data.length === 0) {
+        throw new Error('Error');
+      }
       return resp.data;
     })
     .catch(err => {
-      return Report.failure('Oops!', `Try reloading the page!`, 'Try again');
+      return err;
     });
 }
