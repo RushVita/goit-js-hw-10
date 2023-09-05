@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { elements } from '..';
+import { elements } from '..git';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 axios.defaults.headers.common['x-api-key'] =
   'live_Fa0VZmVHY8vDS2Ti9ijgWVGVxLkOw8u9KdTWWthGy9DuWpfSx9GmaI5cLJc3aEFB';
