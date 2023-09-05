@@ -22,7 +22,6 @@ fetchBreeds()
   .then(data => {
     elements.loader.style.display = 'none';
     elements.select.style.display = 'block';
-    console.log(data);
     elements.select.innerHTML = createOptions(data);
   })
   .catch(err => {
@@ -65,14 +64,4 @@ function createMarkup(catImg) {
    <p>${description}</p>
   <p>Temperament:${temperament}</p>`;
   });
-  // fetchBreeds().then(resp => {
-  //   for (let i = 0; i < resp.length; i++) {
-  //     if (evt.target.value === resp[i].id) {
-  //       elements.catInfo.insertAdjacentHTML(
-  //         'beforeend',
-  //         `<h2>${resp[i].name}</h2><p>${resp[i].description}</p><p>Temperament:${resp[i].temperament}</p>`
-  //       );
-  //     }
-  //   }
-  // });
 }
