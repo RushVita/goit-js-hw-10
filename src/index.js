@@ -18,7 +18,6 @@ function createOptions(arr) {
     .map(({ id, name }) => `<option value="${id}">${name}</option>`)
     .join('');
 }
-
 fetchBreeds()
   .then(resp => {
     elements.select.innerHTML = createOptions(resp);
