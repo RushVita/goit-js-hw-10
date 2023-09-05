@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
-import { fetchBreeds } from './cat-api';
-import { fetchCatByBreed } from './cat-api';
+import { fetchBreeds } from './js/cat-api';
+import { fetchCatByBreed } from './js/cat-api';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
 export const elements = {
@@ -26,11 +26,7 @@ fetchBreeds()
     elements.select.style.display = 'block';
   })
   .catch(err => {
-    return Report.failure(
-      'Error',
-      `Oops! Something went wrong! Try reloading the page!`,
-      'Okay'
-    );
+    return Report.failure('Oops!', `Something went wrong!`, 'Try again');
   });
 
 elements.select.addEventListener('change', handlerSelect);
@@ -46,10 +42,10 @@ function handlerSelect(evt) {
       createMarkup(resp);
     })
     .catch(err => {
-      return   Report.failure(
-        'Error',
-        `Oops! Something went wrong! Try reloading the page!`,
-        'Okay'
+      return Report.failure(
+        'Oops!',
+        `Something went wrong! Try reloading the page!`,
+        'Try again'
       );
     });
 }
